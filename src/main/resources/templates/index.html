@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<style>
+#h1{
+	background-color:#FCE8CB;
+}
+.button {
+	-webkit-transition-duration: 0.5s; /* Safari */
+	transition-duration: 0.5s;
+	text-decoration: none;
+	margin-bottom: 10px;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	background-color: #341E1A;
+	font-family: Arial;
+	border: none;
+}
+
+.button:hover {
+	background-color: #522F29;
+}
+
+#edit {
+	font-size: 72%;
+	padding: 10px 25px;
+	border-radius: 10px;
+}
+
+#del {
+	font-size: 70%;
+	padding: 10px 25px;
+	border-radius: 10px;
+}
+
+#add {
+	width: 12%;
+	font-size: 88%;
+	border-radius: 10px;
+	padding: 16px 4px;
+}
+
+.border {
+	border: 1px;
+	background-color: black;
+	padding: 10px;
+}
+
+table{
+	border-collapse: collapse;
+	border-radius: 10px;
+	border:3px solid #522F29;
+	align:center;
+	margin: 0 auto;
+}
+
+th, td {
+	border: 2px solid black;
+	font-family: Arial;
+	
+}
+tr:hover {background-color: #f5f5f5;}
+
+body {
+	text-align: center;
+}
+
+hr {
+	border-color: white;
+	border:none;
+}
+</style>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Livraria Meu Papel</title>
+</head>
+<div id="h1">
+<h1>Livraria Meu Papel</h1>
+<h2>Produtos Cadastrados</h2>
+</div>
+<body>
+	<table cellpadding="12">
+		<thead>
+			<tr>
+				<hr>
+				<th>Nome</th>
+				<th>Marca</th>
+				<th>Preco</th>
+				<th>Produzido em</th>
+				<th>Acao</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${listProducts}">
+				<td th:text="${product.name}"></td>
+				<td th:text="${product.brand}"></td>
+				<td th:text="${product.price}"></td>
+				<td th:text="${product.madein}"></td>
+				<td><a th:href="@{'/edit/' + ${product.id}}" class="button"
+					role="button" id="edit">Editar</a> <br>
+					<hr> <a th:href="@{'/delete/' + ${product.id}}" class="button"
+					id="del">Excluir</a></td>
+				</tr:block>
+		</tbody>
+
+	</table>
+	<hr>
+	<button type="button" onclick="location.href='prodregistration'"
+		class="button" id="add">Cadastrar</button>
+</body>
+
+</html>
